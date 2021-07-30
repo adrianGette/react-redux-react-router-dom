@@ -5,6 +5,7 @@ import {
 } from '../types';
 
 import clienteAxios from '../config/axios';
+import Swal from 'sweetalert2';
 
 /*************************************************/
 // en el action vamos a tener una función que se
@@ -25,11 +26,26 @@ export function crearNuevoProductoAction(producto) {
 
             // si todo sale bien, actualizar el state
             dispatch( agregarProductoExito(producto) );
+
+            // alerta
+            Swal.fire(
+                'Correcto',
+                'El producto se sgregó correctamente',
+                'success'
+            )
+
         } catch (error) {
             console.log(error);
 
             // si hay un error cambiar el state
             dispatch( agregarProductoError(true) );
+
+            // alerta de error
+            Swal.fire({
+                icon: 'error',
+                title: 'Hubo un error',
+                text: 'Hubo un error, intenta de nuevo'
+            })
         }
     }
 }
