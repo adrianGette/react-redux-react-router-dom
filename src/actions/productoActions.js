@@ -4,20 +4,31 @@ import {
     AGREGAR_PRODUCTO_ERROR
 } from '../types';
 
+import clienteAxios from '../config/axios';
+
+/*************************************************/
 // en el action vamos a tener una función que se
 // tiene que utilizar en el componente, de esa
 // forma los datos de los componentes se pueden
 // pasar a las acciones y utilizamos dispatch
 // para ejecutar esas acciones
+/*************************************************/
 
 // crear nuevos productos
 export function crearNuevoProductoAction(producto) {
-    return ( dispatch ) => {
+    return async ( dispatch ) => {
         dispatch( agregarProducto() );
 
         try {
+            // insertar en la API
+            await clienteAxios.post('/productos', producto);
+
+            // si todo sale bien, actualizar el state
             dispatch( agregarProductoExito(producto) );
         } catch (error) {
+            console.log(error);
+
+            // si hay un error cambiar el state
             dispatch( agregarProductoError(true) );
         }
     }
