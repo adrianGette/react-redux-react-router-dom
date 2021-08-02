@@ -6,7 +6,7 @@ import {
 // muestra alerta
 export function mostrarAlerta(alerta) {
     return (dispatch) => {
-        disptach( crearAlerta(alerta) )
+        dispatch( crearAlerta(alerta) )
     }
 }
 
