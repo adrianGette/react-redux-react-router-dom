@@ -168,6 +168,7 @@ export function editarProductoAction(producto) {
             dispatch( editarProductoExito(producto) );
         } catch (error) {
             console.log(error);
+            dispatch( editarProductoError() );
         }
     }
 }
@@ -179,4 +180,9 @@ const editarProducto = () => ({
 const editarProductoExito = producto => ({
     type: PRODUCTO_EDITADO_EXITO,
     payload: producto
-})
+});
+
+const editarProductoError = () => ({
+    type: PRODUCTO_EDITADO_ERROR,
+    payload: true
+});
